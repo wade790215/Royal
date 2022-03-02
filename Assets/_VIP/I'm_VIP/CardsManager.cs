@@ -29,7 +29,7 @@ public class CardsManager : MonoBehaviour
         StartCoroutine(PreveiwAreaToPlayingArea(2, 3f));
     }
 
-    IEnumerator CreateOneCardToPreveiwArea(float delayTime)
+    public IEnumerator CreateOneCardToPreveiwArea(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
         int iCrad = Random.Range(0,MyCardModel.instance.list.Count-1); //隨機選擇卡牌
@@ -45,7 +45,7 @@ public class CardsManager : MonoBehaviour
         previewCard.GetComponent<MyCardView>().previewHolder = this.previewHodler;
     }   
 
-    IEnumerator PreveiwAreaToPlayingArea(int playAreaIndex ,float delayTime)
+    public IEnumerator PreveiwAreaToPlayingArea(int playAreaIndex ,float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
         previewCard.localScale = Vector3.one;

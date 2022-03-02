@@ -70,7 +70,7 @@ public class MyCardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoint
 
             }
         }
-        //鼠標沒有放在地面上
+        //鼠標沒有放在地面上(放回出牌區域)
         else
         {
             // 卡牌已經在場景中顯示
@@ -95,15 +95,19 @@ public class MyCardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPoint
         if (hitGround)
         {
             OnCardUsed();
+            Destroy(this.gameObject);
+            CardsManager.Instance.StartCoroutine(CardsManager.Instance.PreveiwAreaToPlayingArea(playAreaIndex,0.5f));
+            CardsManager.Instance.StartCoroutine(CardsManager.Instance.CreateOneCardToPreveiwArea(1f));
         }
         else
         {
+            //卡牌放回出牌區
             transform.DOMove(CardsManager.Instance.cardsTrans[playAreaIndex].position, 0.2f);
         }
     }
 
     private void OnCardUsed()
     {
-        
+        //放到PlaceableView下
     }
 }
