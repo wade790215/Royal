@@ -27,12 +27,14 @@ public class CardsManager : MonoBehaviour
 
         StartCoroutine(CreateOneCardToPreveiwArea(2.5f));
         StartCoroutine(PreveiwAreaToPlayingArea(2, 3f));
+
+        StartCoroutine(CreateOneCardToPreveiwArea(3.5f));
     }
 
     public IEnumerator CreateOneCardToPreveiwArea(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        int iCrad = Random.Range(0,MyCardModel.instance.list.Count-1); //隨機選擇卡牌
+        int iCrad = Random.Range(0,MyCardModel.instance.list.Count-1); //隨機選擇卡牌        
         var card = MyCardModel.instance.list[iCrad];
         var cardGO = Resources.Load<GameObject>(card.cardPrefab);
         //ameObject cardPrefab = cardPrefabs[Random.Range(0, cardPrefabs.Length)];
@@ -41,8 +43,8 @@ public class CardsManager : MonoBehaviour
         previewCard.position = startPos.position;
         previewCard.localScale = Vector3.one ;
         previewCard.DOMove(endPos.position, 0.1f);
-        previewCard.GetComponent<MyCardView>().data = card;   
-        previewCard.GetComponent<MyCardView>().previewHolder = this.previewHodler;
+        previewCard.GetComponent<CardView>().data = card;   
+        previewCard.GetComponent<CardView>().previewHolder = this.previewHodler;
     }   
 
     public IEnumerator PreveiwAreaToPlayingArea(int playAreaIndex ,float delayTime)
@@ -50,6 +52,6 @@ public class CardsManager : MonoBehaviour
         yield return new WaitForSeconds(delayTime);
         previewCard.localScale = Vector3.one;
         previewCard.DOMove(cardsTrans[playAreaIndex].position, 0.5f);
-        previewCard.GetComponent<MyCardView>().playAreaIndex = playAreaIndex;
+        previewCard.GetComponent<CardView>().playAreaIndex = playAreaIndex;
     }
 }
