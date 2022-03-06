@@ -986,6 +986,7 @@ GameObject:
   - component: {fileID: 1479946322843236336}
   - component: {fileID: 1281781896090838426}
   - component: {fileID: -4872684203907110541}
+  - component: {fileID: -8574679395451052443}
   m_Layer: 0
   m_Name: Warrior Red
   m_TagString: Untagged
@@ -1188,6 +1189,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753ec09c8eaf36f4c9db206115963be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placeableData:
+    id: 0
+    name: 
+    pType: 0
+    associatedPrefab: 
+    alternatePrefab: 
+    attackType: 0
+    targetType: 0
+    attackRatio: 0
+    damagePerAttack: 0
+    attackRange: 0
+    hitPoints: 0
+    attackClip: 
+    dieClip: 
+    speed: 0
+    lifeTime: 0
+    damagePerSecond: 0
+--- !u!114 &-8574679395451052443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5701704621631426976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9df1cb62784251418fa8ce0c95bda53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiState: 0
 --- !u!1 &5709216429091363622
 GameObject:
   m_ObjectHideFlags: 0

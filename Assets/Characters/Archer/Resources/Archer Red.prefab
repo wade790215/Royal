@@ -1537,6 +1537,7 @@ GameObject:
   - component: {fileID: 5337654603367310687}
   - component: {fileID: 167357322037240506}
   - component: {fileID: 9039394170273518151}
+  - component: {fileID: -6176395645852397501}
   m_Layer: 0
   m_Name: Archer Red
   m_TagString: Untagged
@@ -1740,6 +1741,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753ec09c8eaf36f4c9db206115963be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placeableData:
+    id: 0
+    name: 
+    pType: 0
+    associatedPrefab: 
+    alternatePrefab: 
+    attackType: 0
+    targetType: 0
+    attackRatio: 0
+    damagePerAttack: 0
+    attackRange: 0
+    hitPoints: 0
+    attackClip: 
+    dieClip: 
+    speed: 0
+    lifeTime: 0
+    damagePerSecond: 0
+--- !u!114 &-6176395645852397501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537164977549460556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9df1cb62784251418fa8ce0c95bda53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiState: 0
 --- !u!1 &5557141645663679012
 GameObject:
   m_ObjectHideFlags: 0

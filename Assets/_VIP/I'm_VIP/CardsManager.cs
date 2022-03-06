@@ -1,6 +1,5 @@
 ﻿using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CardsManager : MonoBehaviour
@@ -32,9 +31,10 @@ public class CardsManager : MonoBehaviour
     }
 
     public IEnumerator CreateOneCardToPreveiwArea(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-        int iCrad = Random.Range(0,MyCardModel.instance.list.Count-1); //隨機選擇卡牌        
+    {        
+        yield return new WaitForSeconds(delayTime);        
+        //Random.Range若為int則不會取得最大值
+        int iCrad = Random.Range(0,MyCardModel.instance.list.Count);         
         var card = MyCardModel.instance.list[iCrad];
         var cardGO = Resources.Load<GameObject>(card.cardPrefab);
         //ameObject cardPrefab = cardPrefabs[Random.Range(0, cardPrefabs.Length)];

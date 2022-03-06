@@ -87,7 +87,10 @@ namespace UnityRoyale
         {
             state = States.Seeking;
         }
-
+        /// <summary>
+        /// 判斷目標死亡
+        /// </summary>
+        /// <param name="p"></param>
         protected void TargetIsDead(Placeable p)
         {
             //Debug.Log("My target " + p.name + " is dead", gameObject);
@@ -97,12 +100,19 @@ namespace UnityRoyale
 
             timeToActNext = lastBlowTime + attackRatio;
         }
-        
+        /// <summary>
+        /// 目標是否在範圍內
+        /// </summary>
+        /// <returns></returns>
         public bool IsTargetInRange()
         {
             return (transform.position-target.transform.position).sqrMagnitude <= attackRange*attackRange;
         }
-
+        /// <summary>
+        /// 接受傷害
+        /// </summary>
+        /// <param name="amount"></param>
+        /// <returns></returns>
         public float SufferDamage(float amount)
         {
             hitPoints -= amount;
@@ -126,9 +136,7 @@ namespace UnityRoyale
             state = States.Dead;
 			audioSource.pitch = Random.Range(.9f, 1.1f);
 			audioSource.PlayOneShot(dieAudioClip, 1f);
-
-			if(OnDie != null)
-            	OnDie(this);
+            OnDie?.Invoke(this);
         }
     }
 }

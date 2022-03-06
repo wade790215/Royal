@@ -4,7 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityRoyale;
+/// <summary>
+/// 卡片畫面表現
+/// </summary>
 public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
     public MyCard data;
@@ -46,7 +49,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
                 {
                     //尋找小兵Data
                     var unitID  = data.placeablesIndices[i];
-                    Placeable MP = null;
+                    MyPlaceable MP = null;
                     for (int j = 0; j < PlaceableModel.instance.list.Count; j++)
                     {
                         if(PlaceableModel.instance.list[j].id == unitID)
@@ -60,7 +63,10 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
                     GameObject unitPrefabs = Resources.Load<GameObject>(MP.associatedPrefab);
                     var unit = Instantiate(unitPrefabs, previewHolder,false);                    
                     unit.transform.localPosition = offset;
-                    unit.GetComponent<PlaceableView>().placeableData = MP;
+                    MyPlaceable MP2 = MP.Clone();
+                    MP2.faction = Placeable.Faction.Player;
+                    unit.GetComponent<PlaceableView>().placeableData = MP2; 
+                   
                 }
                 isDragging = true;
             }

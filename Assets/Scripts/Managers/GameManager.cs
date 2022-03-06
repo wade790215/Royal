@@ -27,11 +27,11 @@ namespace UnityRoyale
         private UIManager UIManager;
         private CinematicsManager cinematicsManager;
 
-        private List<ThinkingPlaceable> playerUnits, opponentUnits;
-        private List<ThinkingPlaceable> playerBuildings, opponentBuildings;
-        private List<ThinkingPlaceable> allPlayers, allOpponents; //contains both Buildings and Units
-        private List<ThinkingPlaceable> allThinkingPlaceables;
-        private List<Projectile> allProjectiles;
+        private List<ThinkingPlaceable> playerUnits, opponentUnits; //存取自己與敵方可移動單位
+        private List<ThinkingPlaceable> playerBuildings, opponentBuildings; //存取自己與敵方的建築物
+        private List<ThinkingPlaceable> allPlayers, allOpponents; //存取自己與敵方的所有遊戲單位(移動單位+建築)
+        private List<ThinkingPlaceable> allThinkingPlaceables; //存取所有的AI遊戲單位
+        private List<Projectile> allProjectiles; //所有的投擲物
         private bool gameOver = false;
         private bool updateAllPlaceables = false; //used to force an update of all AIBrains in the Update loop
         private const float THINKING_DELAY = 2f;

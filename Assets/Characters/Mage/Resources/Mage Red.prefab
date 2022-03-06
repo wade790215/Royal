@@ -1386,6 +1386,7 @@ GameObject:
   - component: {fileID: 3368897962327348152}
   - component: {fileID: 5035176704641411430}
   - component: {fileID: 935144894231468307}
+  - component: {fileID: -3036677138314490636}
   m_Layer: 0
   m_Name: Mage Red
   m_TagString: Untagged
@@ -1592,6 +1593,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753ec09c8eaf36f4c9db206115963be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placeableData:
+    id: 0
+    name: 
+    pType: 0
+    associatedPrefab: 
+    alternatePrefab: 
+    attackType: 0
+    targetType: 0
+    attackRatio: 0
+    damagePerAttack: 0
+    attackRange: 0
+    hitPoints: 0
+    attackClip: 
+    dieClip: 
+    speed: 0
+    lifeTime: 0
+    damagePerSecond: 0
+--- !u!114 &-3036677138314490636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122871589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9df1cb62784251418fa8ce0c95bda53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aiState: 0
 --- !u!1 &1135473222
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ namespace UnityRoyale
             Obstacle, // 障碍物（陨石）
             Building, // 建筑物（生产游戏单位）
             Spell, // 法术（对目标造成瞬时或者持续性的伤害）
-            Castle, // 城堡（特殊类型的游戏单位）
+            Castle, // 城堡（特殊类型的游戏单位）  
         }
 
         public enum PlaceableTarget
