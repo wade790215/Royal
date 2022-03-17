@@ -37,12 +37,12 @@ public class PlaceableManager : MonoBehaviour
         for (int i = 0; i < Mine.Count; i++)
         {
             //遊戲角色狀態
-            var PV = Mine[i];
-            var PData = PV.placeableData;
-            var AIB = PV.GetComponent<AIBase>();
-            var NMA = AIB.GetComponent<NavMeshAgent>();
-            var Ani = AIB.GetComponent<Animator>();
-
+            PlaceableView PV = Mine[i];
+            MyPlaceable PData = PV.placeableData;
+            AIBase AIB = PV.GetComponent<AIBase>();
+            NavMeshAgent NMA = AIB.GetComponent<NavMeshAgent>();
+            Animator Ani = AIB.GetComponent<Animator>();
+            
             switch (AIB.aiState)
             {
                 case AIState.Idle:
@@ -54,7 +54,7 @@ public class PlaceableManager : MonoBehaviour
                         Debug.Log($"找到最近的敵人{AIB.target.gameObject}");
                         AIB.aiState = AIState.Seek;
                         NMA.enabled = true;
-                        Ani.SetBool("IsMoving", true);
+                        Ani.SetBool("IsMoving", true);                        
                     }
 
                     //判斷是否有敵人在範圍內
@@ -74,12 +74,32 @@ public class PlaceableManager : MonoBehaviour
                     
                     break;
                 case AIState.Attack:
+                    
+                    if (IsInAttackRange(PV.transform.position, AIB.target.transform.position, PData.attackRange) == false)
+                    {
+                        AIB.aiState = AIState.Idle;
+                        break;
+                    }
+                    //在攻擊間隔時間內不連續攻擊
+                    if (Time.time < AIB.lastBlowTime + PData.attackRatio)
+                    {
+                        break;
+                    }
                     Ani.SetTrigger("Attack");
-                    //執行攻擊動作
-                    //檢測敵人是否仍然在攻擊範圍內或是生命值大於0
-                    //若否則切換到Idle狀態
+                    AIB.target.GetComponent<PlaceableView>().placeableData.hitPoints -= PData.damagePerAttack;
+                    if (AIB.target.GetComponent<PlaceableView>().placeableData.hitPoints <= 0)
+                    {
+                        AIB.aiState = AIState.Dead;
+                        AIB.target.GetComponent<PlaceableView>().placeableData.hitPoints = 0;
+                        if(AIB.target.GetComponent<Animator>()!=null)
+                            AIB.target.GetComponent<Animator>().SetTrigger("IsDead");
+                    }
+                    AIB.lastBlowTime = Time.time;
                     break;
                 case AIState.Dead:
+                    {
+                        
+                    }
                     break;
             }
         }

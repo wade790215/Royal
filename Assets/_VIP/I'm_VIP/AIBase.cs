@@ -12,6 +12,8 @@ public class AIBase : MonoBehaviour
 {
     public AIBase target = null;
     public AIState aiState = AIState.Idle;
+    internal float lastBlowTime;
+
     public virtual void OnIdle() { }
     public virtual void OnSeek() { }
     public virtual void OnAttack() { }    
