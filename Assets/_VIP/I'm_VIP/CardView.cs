@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityRoyale;
-/// <summary>
-/// 卡片畫面表現
-/// </summary>
+using static UnityRoyale.Placeable;
+
 public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
 {
     public MyCard data;
@@ -23,7 +22,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     }
 
     public void OnPointerDown(PointerEventData eventData)
-    {
+    {        
         transform.SetAsLastSibling(); //將選中物件層級移到最後面
     }
 
@@ -37,37 +36,14 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
         // 鼠標有放在地面上
         if (hitGround)
         {
-            // 讓小兵跟著鼠標走
+            // previewHolder跟著鼠標走
             previewHolder.transform.position = raycastHit.point;
             // 如果小兵還沒拖到場上
             if (isDragging == false)
             {
                 //隱藏卡牌
                 GetComponent<CanvasGroup>().alpha = 0;
-                //從卡牌數據中取出資料
-                for (int i = 0; i < data.placeablesIndices.Length; i++)
-                {
-                    //尋找小兵Data
-                    var unitID  = data.placeablesIndices[i];
-                    MyPlaceable MP = null;
-                    for (int j = 0; j < PlaceableModel.instance.list.Count; j++)
-                    {
-                        if(PlaceableModel.instance.list[j].id == unitID)
-                        {
-                            MP = PlaceableModel.instance.list[j];
-                            break;
-                        }
-                    }
-                    //生成卡牌對應的小兵，並將其設置為預覽用卡牌
-                    Vector3 offset = data.relativeOffsets[i];
-                    GameObject unitPrefabs = Resources.Load<GameObject>(MP.associatedPrefab);
-                    var unit = Instantiate(unitPrefabs, previewHolder,false);                    
-                    unit.transform.localPosition = offset;
-                    MyPlaceable MP2 = MP.Clone();
-                    MP2.faction = Placeable.Faction.Player;
-                    unit.GetComponent<PlaceableView>().placeableData = MP2; 
-                   
-                }
+                CreatePlaceable(data, raycastHit.point,previewHolder.transform,Faction.Player);
                 isDragging = true;
             }
             else
@@ -92,6 +68,44 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
         }
     }
 
+    public static List<PlaceableView> CreatePlaceable(MyCard cardData,Vector3 pos,Transform parent,Faction faction)
+    {
+        if (cardData == null)       
+            throw new NullReferenceException("cardData");
+        if (cardData.placeablesIndices.Length == 0)
+            throw new ArgumentException("檢查Excel的placeablesIndices是否有設定兵種編號");
+
+        List<PlaceableView> placeables = new List<PlaceableView>();
+        //從卡牌數據中取出資料
+        for (int i = 0; i < cardData.placeablesIndices.Length; i++)
+        {
+            //尋找小兵Data
+            var unitID = cardData.placeablesIndices[i];
+            MyPlaceable MP = null;
+            for (int j = 0; j < PlaceableModel.instance.list.Count; j++)
+            {
+                if (PlaceableModel.instance.list[j].id == unitID)
+                {
+                    MP = PlaceableModel.instance.list[j].Clone();
+                    break;
+                }
+            }
+            //生成卡牌對應的小兵，並將其設置為預覽用卡牌
+            Vector3 offset = cardData.relativeOffsets[i];
+            GameObject unitPrefabs = Resources.Load<GameObject>(MP.associatedPrefab);
+            //var unit = Instantiate(unitPrefabs, previewHolder, false);
+            //unit.transform.localPosition = offset;
+            //parent.position = pos;
+            var unit = Instantiate(unitPrefabs, parent, false);
+            unit.transform.localPosition = offset;
+            unit.transform.position = pos + offset;
+            MP.faction = faction;
+            var PV = unit.GetComponent<PlaceableView>();
+            PV.placeableData = MP;
+            placeables.Add(PV);            
+        }      
+        return placeables;
+    }
 
     public void OnPointerUp(PointerEventData eventData)
     {
