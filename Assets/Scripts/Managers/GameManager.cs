@@ -20,12 +20,12 @@ namespace UnityRoyale
         public PlaceableData castlePData;
         public ParticlePool appearEffectPool;
 
-        private CardManager cardManager;
-        private CPUOpponent CPUOpponent;
+        private CardManager cardManager; //我方出牌
+        private CPUOpponent CPUOpponent; //敵方出牌
         private InputManager inputManager;
-        private AudioManager audioManager;
+        private AudioManager audioManager; //音效管理
         private UIManager UIManager;
-        private CinematicsManager cinematicsManager;
+        private CinematicsManager cinematicsManager; //劇情動畫管理
 
         private List<ThinkingPlaceable> playerUnits, opponentUnits; //存取自己與敵方可移動單位
         private List<ThinkingPlaceable> playerBuildings, opponentBuildings; //存取自己與敵方的建築物

@@ -59,7 +59,7 @@ namespace UnityRoyale
 
                 if(OnCardUsed != null)
 				{
-					Vector3 newPos = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(3f, 8.5f));
+					Vector3 newPos = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(3f, 8.5f)); //newPos意思在可放置區域內生成卡牌
                     OnCardUsed(aiDeck.GetNextCardFromDeck(), newPos, Placeable.Faction.Opponent);
 				}
             }
