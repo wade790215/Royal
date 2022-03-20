@@ -176,7 +176,6 @@ GameObject:
   - component: {fileID: 5796151112112817406}
   - component: {fileID: 971464981178702086}
   - component: {fileID: 3059562221948918786}
-  - component: {fileID: 6741827695351349636}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -272,32 +271,3 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &6741827695351349636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8945441018181547911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 753ec09c8eaf36f4c9db206115963be2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  placeableData:
-    id: 0
-    name: 
-    pType: 0
-    associatedPrefab: 
-    alternatePrefab: 
-    attackType: 0
-    targetType: 0
-    attackRatio: 0
-    damagePerAttack: 0
-    attackRange: 0
-    hitPoints: 0
-    attackClip: 
-    dieClip: 
-    speed: 0
-    lifeTime: 0
-    damagePerSecond: 0
