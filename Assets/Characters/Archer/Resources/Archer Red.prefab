@@ -1742,6 +1742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placeableData:
+    faction: 2
     id: 0
     name: 
     pType: 0
@@ -1770,7 +1771,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9df1cb62784251418fa8ce0c95bda53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   aiState: 0
+  projectile: {fileID: 953002537907380271, guid: e12f67aa396803b4db1f156b4de6a91f,
+    type: 3}
+  firePos: {fileID: 7839702217228705658}
 --- !u!1 &5557141645663679012
 GameObject:
   m_ObjectHideFlags: 0
