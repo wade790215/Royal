@@ -15,11 +15,14 @@ public class CPUManager : MonoBehaviour
 
     IEnumerator CreateRandomCards()
     {
+       
         while (true)
         {
+            //間隔時間出牌
             yield return new WaitForSeconds(PlayIntervalTime);
             var cardList = MyCardModel.instance.list;
             var carData = cardList[Random.Range(0, cardList.Count)];
+            //設定CPU出牌區域
             var viewList = CardView.CreatePlaceable(carData, new Vector3(Random.Range(-8f, 8f), 0, Random.Range(2, 8)), transform, Faction.Opponent);
             foreach (var item in viewList)
             {

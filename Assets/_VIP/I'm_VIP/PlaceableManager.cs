@@ -34,7 +34,6 @@ public class PlaceableManager : MonoBehaviour
         Mine.Add(mineTower.GetComponent<PlaceableView>());
     }
 
-
     void Update()
     {
         UpdatePlaceable(Mine);
@@ -153,7 +152,7 @@ public class PlaceableManager : MonoBehaviour
                         break;
                     }
                     Ani.SetTrigger("Attack");
-                    AIB.target.GetComponent<PlaceableView>().placeableData.hitPoints -= PData.damagePerAttack;
+                    //AIB.target.GetComponent<PlaceableView>().placeableData.hitPoints -= PData.damagePerAttack;
                     if (AIB.target.GetComponent<PlaceableView>().placeableData.hitPoints <= 0)
                     {
                         AIB.target.GetComponent<AIBase>().aiState = AIState.Dead;
@@ -187,6 +186,7 @@ public class PlaceableManager : MonoBehaviour
         foreach (var unit in units)
         {
             var dis = Vector3.Distance(unit.transform.position, myPos);
+            //如果小兵距離比較則紀錄跟下一個做比對
             if (dis < min && unit.GetComponent<AIBase>().aiState != AIState.Dead)
             {
                 min = dis;
