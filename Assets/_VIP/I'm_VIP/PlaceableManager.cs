@@ -23,8 +23,7 @@ public class PlaceableManager : MonoBehaviour
     public static PlaceableManager Instance;
     public List<PlaceableView> Mine = new List<PlaceableView>();
     public List<PlaceableView> Opponent = new List<PlaceableView>();
-    public List<MyProjectile> MineProjectile = new List<MyProjectile>();
-    public List<MyProjectile> OpponentProjectile = new List<MyProjectile>();
+    
     public AIBase opponentTower , mineTower;
 
     void Awake()
@@ -37,48 +36,7 @@ public class PlaceableManager : MonoBehaviour
     void Update()
     {
         UpdatePlaceable(Mine);
-        UpdatePlaceable(Opponent);
-        UpdateProjectiles(MineProjectile);
-        UpdateProjectiles(OpponentProjectile);
-    }
-
-    private void UpdateProjectiles(List<MyProjectile> myProjectilesList)
-    {
-        List<MyProjectile> destroyProjectilesList = new List<MyProjectile>();   
-        for (int i = 0; i < myProjectilesList.Count; i++)
-        {
-            var MP = myProjectilesList[i];
-            var CasterAI = MP.caster as UnitAI;
-            var TargetAI = MP.target;
-            if(TargetAI == null)
-            {
-                Destroy(MP.gameObject);
-                //利用 destroyProjectilesList 來儲存被摧毀的投擲物，如果直接Remove會導致List的Index往前推進下次搜尋時會跳過
-                destroyProjectilesList.Add(MP);
-                continue;   
-            }
-            MP.progress += Time.deltaTime * MP.projectileSpeed;
-            MP.transform.position = Vector3.Lerp(MP.caster.transform.position, TargetAI.transform.position + Vector3.up, MP.progress);           
-
-            if (MP.progress >= 1f)
-            {                
-                CasterAI.OnDealDamage();
-                if (TargetAI.GetComponent<PlaceableView>().placeableData.hitPoints <= 0)
-                {
-                    if (TargetAI.aiState != AIState.Dead)
-                    {
-                        TargetAI.aiState = AIState.Dead;
-                    }
-                    TargetAI.GetComponent<Animator>()?.SetTrigger("IsDead");
-                }
-            }
-            Destroy(MP.gameObject);
-            destroyProjectilesList.Add(MP);
-        }
-        foreach (var item in destroyProjectilesList)
-        {
-            myProjectilesList.Remove(item);
-        }
+        UpdatePlaceable(Opponent);       
     }
 
     private void UpdatePlaceable(List<PlaceableView> placeableViewsList)
@@ -151,13 +109,13 @@ public class PlaceableManager : MonoBehaviour
                     {
                         break;
                     }
+                    AIB.transform.LookAt(AIB.target.transform.position);
+                    Ani.SetBool("IsMoving", false);
                     Ani.SetTrigger("Attack");
                     //AIB.target.GetComponent<PlaceableView>().placeableData.hitPoints -= PData.damagePerAttack;
                     if (AIB.target.GetComponent<PlaceableView>().placeableData.hitPoints <= 0)
                     {
-                        AIB.target.GetComponent<AIBase>().aiState = AIState.Dead;
-                        AIB.target.GetComponent<PlaceableView>().placeableData.hitPoints = 0;                        
-                        AIB.target.GetComponent<Animator>()?.SetTrigger("IsDead");
+                        OnEnterDie(AIB.target);
                         AIB.aiState = AIState.Idle;
                     }
                     AIB.lastBlowTime = Time.time;
@@ -171,6 +129,17 @@ public class PlaceableManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void OnEnterDie(AIBase target)
+    {
+        if (target.aiState == AIState.Dead)
+        {
+            return;
+        }
+        target.GetComponent<AIBase>().aiState = AIState.Dead;
+        target.GetComponent<PlaceableView>().placeableData.hitPoints = 0;
+        target.GetComponent<Animator>()?.SetTrigger("IsDead");
     }
 
     private bool IsInAttackRange(Vector3 myPos, Vector3 targetPos, float attackRange)

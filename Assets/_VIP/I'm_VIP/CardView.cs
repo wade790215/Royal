@@ -33,6 +33,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
         transform.position = worldPos;
         var ray = mainCamera.ScreenPointToRay(eventData.position);
         bool hitGround = Physics.Raycast(ray, out RaycastHit raycastHit, float.PositiveInfinity, 1 << LayerMask.NameToLayer("PlayingField"));
+        
         // 鼠標有放在地面上
         if (hitGround)
         {
@@ -92,7 +93,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
             }
             //生成卡牌對應的小兵，並將其設置為預覽用卡牌
             Vector3 offset = cardData.relativeOffsets[i];
-            GameObject unitPrefabs = Resources.Load<GameObject>(MP.associatedPrefab);
+            GameObject unitPrefabs = Resources.Load<GameObject>(faction ==Faction.Player ? MP.associatedPrefab : MP.alternatePrefab);
             //var unit = Instantiate(unitPrefabs, previewHolder, false);
             //unit.transform.localPosition = offset;
             //parent.position = pos;

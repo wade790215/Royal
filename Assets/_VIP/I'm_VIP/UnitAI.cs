@@ -20,10 +20,10 @@ public class UnitAI : AIBase
     public void OnFireProjectile()
     {
         //放在手位置(世界座標)、但是不以firePos為父節點
-        var GO = Instantiate(projectile, firePos.position,Quaternion.identity);
+        var GO = Instantiate(projectile, firePos.position,Quaternion.identity,ProjectileMgr.Instance.transform);
         GO.GetComponent<MyProjectile>().caster = this;
         GO.GetComponent<MyProjectile>().target = target;
-        PlaceableManager.Instance.MineProjectile.Add(GO.GetComponent<MyProjectile>());
+        ProjectileMgr.Instance.MineProjectile.Add(GO.GetComponent<MyProjectile>());
     }
 }
 
