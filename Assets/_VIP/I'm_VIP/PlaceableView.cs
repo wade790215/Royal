@@ -7,4 +7,13 @@ using UnityEngine;
 public class PlaceableView : MonoBehaviour
 {
     public MyPlaceable placeableData;
+
+    public float dieDuration = 10f;
+    public float dieProgress = 0f;
+
+    private void OnDestroy()
+    {
+        PlaceableManager.Instance.Mine.Remove(this); 
+        PlaceableManager.Instance.Opponent.Remove(this);
+    }
 }

@@ -23,8 +23,8 @@ public class PlaceableManager : MonoBehaviour
     public static PlaceableManager Instance;
     public List<PlaceableView> Mine = new List<PlaceableView>();
     public List<PlaceableView> Opponent = new List<PlaceableView>();
-    
-    public AIBase opponentTower , mineTower;
+
+    public AIBase opponentTower, mineTower;
 
     void Awake()
     {
@@ -36,13 +36,13 @@ public class PlaceableManager : MonoBehaviour
     void Update()
     {
         UpdatePlaceable(Mine);
-        UpdatePlaceable(Opponent);       
+        UpdatePlaceable(Opponent);
     }
 
     private void UpdatePlaceable(List<PlaceableView> placeableViewsList)
     {
         for (int i = 0; i < placeableViewsList.Count; i++)
-        {            
+        {
             PlaceableView PV = placeableViewsList[i];
             MyPlaceable PData = PV.placeableData;
             AIBase AIB = PV.GetComponent<AIBase>();
@@ -122,9 +122,17 @@ public class PlaceableManager : MonoBehaviour
                     break;
                 case AIState.Dead:
                     {
-                        if (AIB is BuildingAI) 
-                            break;                       
-                        NMA.enabled = false;                        
+                        if (AIB is BuildingAI)
+                            break;
+
+                        var Ren = AIB.GetComponentsInChildren<Renderer>();
+                        PV.dieProgress += (1 / PV.dieDuration) * Time.deltaTime;
+
+                         foreach (var item in Ren)
+                        {
+                            item.material.SetFloat("_DissolveFatcor", PV.dieProgress);
+                        }
+
                     }
                     break;
             }
@@ -137,9 +145,21 @@ public class PlaceableManager : MonoBehaviour
         {
             return;
         }
+        target.GetComponent<NavMeshAgent>().enabled = false;
         target.GetComponent<AIBase>().aiState = AIState.Dead;
         target.GetComponent<PlaceableView>().placeableData.hitPoints = 0;
         target.GetComponent<Animator>()?.SetTrigger("IsDead");
+        var Ren = target.GetComponentsInChildren<Renderer>();
+        var view = target.GetComponent<PlaceableView>();
+        var color = view.placeableData.faction == Faction.Player ? Color.red : Color.blue;
+        view.dieProgress = 0f;
+        foreach (var item in Ren)
+        {
+            item.material.SetColor("_EdgeColor", color *8);
+            item.material.SetFloat("_EdgeWidth", 0.1f);
+            item.material.SetFloat("_DissolveFatcor", view.dieProgress);
+        }
+        //Destroy(target.gameObject, view.dieDuration);
     }
 
     private bool IsInAttackRange(Vector3 myPos, Vector3 targetPos, float attackRange)
