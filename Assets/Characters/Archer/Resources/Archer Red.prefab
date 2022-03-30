@@ -1759,6 +1759,8 @@ MonoBehaviour:
     speed: 0
     lifeTime: 0
     damagePerSecond: 0
+  dieDuration: 10
+  dieProgress: 0
 --- !u!114 &-6176395645852397501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1775,7 +1777,7 @@ MonoBehaviour:
   aiState: 0
   projectile: {fileID: 953002537907380271, guid: e12f67aa396803b4db1f156b4de6a91f,
     type: 3}
-  firePos: {fileID: 7839702217228705658}
+  firePos: {fileID: 2574879117666418469}
 --- !u!1 &5557141645663679012
 GameObject:
   m_ObjectHideFlags: 0
