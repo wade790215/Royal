@@ -141,10 +141,8 @@ public class PlaceableManager : MonoBehaviour
 
     public void OnEnterDie(AIBase target)
     {
-        if (target.aiState == AIState.Dead)
-        {
-            return;
-        }
+        if (target.aiState == AIState.Dead) return;
+        if (target is BuildingAI) return;
         target.GetComponent<NavMeshAgent>().enabled = false;
         target.GetComponent<AIBase>().aiState = AIState.Dead;
         target.GetComponent<PlaceableView>().placeableData.hitPoints = 0;

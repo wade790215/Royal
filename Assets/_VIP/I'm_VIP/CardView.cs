@@ -24,6 +24,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
     public void OnPointerDown(PointerEventData eventData)
     {        
         transform.SetAsLastSibling(); //將選中物件層級移到最後面
+        CardsManager.Instance.forbiddenAreaRenderer.enabled = true;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -43,7 +44,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
             if (isDragging == false)
             {
                 //隱藏卡牌
-                GetComponent<CanvasGroup>().alpha = 0;
+                GetComponent<CanvasGroup>().alpha = 0;                
                 CreatePlaceable(data, raycastHit.point,previewHolder.transform,Faction.Player);
                 isDragging = true;
             }
@@ -65,6 +66,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
                 {
                     Destroy(unit.gameObject);
                 }
+                
             }
         }
     }
@@ -91,6 +93,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
                     break;
                 }
             }
+
             //生成卡牌對應的小兵，並將其設置為預覽用卡牌
             Vector3 offset = cardData.relativeOffsets[i];
             GameObject unitPrefabs = Resources.Load<GameObject>(faction ==Faction.Player ? MP.associatedPrefab : MP.alternatePrefab);
@@ -108,7 +111,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
         return placeables;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public async void OnPointerUp(PointerEventData eventData)
     {
         var ray = mainCamera.ScreenPointToRay(eventData.position);
         bool hitGround = Physics.Raycast(ray, float.PositiveInfinity, 1 << LayerMask.NameToLayer("PlayingField"));
@@ -116,14 +119,17 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
         {
             OnCardUsed();
             Destroy(this.gameObject);
-            CardsManager.Instance.StartCoroutine(CardsManager.Instance.PreveiwAreaToPlayingArea(playAreaIndex,0.5f));
-            CardsManager.Instance.StartCoroutine(CardsManager.Instance.CreateOneCardToPreveiwArea(1f));
+
+            //這裡的await沒有new，返回值可以是void
+            await CardsManager.Instance.PreveiwAreaToPlayingArea(playAreaIndex,0.5f);
+            await CardsManager.Instance.CreateOneCardToPreveiwArea(1f);
         }
         else
         {
             //卡牌放回出牌區
             transform.DOMove(CardsManager.Instance.cardsTrans[playAreaIndex].position, 0.2f);
         }
+        CardsManager.Instance.forbiddenAreaRenderer.enabled = false;
     }
 
     private void OnCardUsed()
