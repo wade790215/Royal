@@ -22,15 +22,15 @@ public class CardsManager : MonoBehaviour
     async void Start()
     {        
         await (CreateOneCardToPreveiwArea(0.5f));
-        await (PreveiwAreaToPlayingArea(0, 1f));
+        await (PreveiwAreaToPlayingArea(0, 0.5f));
 
-        await (CreateOneCardToPreveiwArea(1.5f));
-        await (PreveiwAreaToPlayingArea(1, 2f));
+        await (CreateOneCardToPreveiwArea(0.5f));
+        await (PreveiwAreaToPlayingArea(1, 0.5f));
 
-        await (CreateOneCardToPreveiwArea(2.5f));
-        await (PreveiwAreaToPlayingArea(2, 3f));
+        await (CreateOneCardToPreveiwArea(0.5f));
+        await (PreveiwAreaToPlayingArea(2, 0.5f));
 
-        await (CreateOneCardToPreveiwArea(3.5f));
+        await (CreateOneCardToPreveiwArea(0.5f));
     }
     //改用async來降低效能消耗
     public async Task CreateOneCardToPreveiwArea(float delayTime) 
