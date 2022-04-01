@@ -3,6 +3,7 @@ using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Profiling;
 
 public class CardsManager : MonoBehaviour
 {
@@ -49,7 +50,8 @@ public class CardsManager : MonoBehaviour
         //previewCard  = Instantiate(cardGO, canvas).transform;
 
         // Async異步實例化，需等到實例化完成才能得到物件 InstantiateAsync =  Resources.Load + Instantiate
-        GameObject cardPrefab =  await Addressables.InstantiateAsync(card.cardPrefab).Task;
+       
+        GameObject cardPrefab =  await Addressables.InstantiateAsync(card.cardPrefab).Task;        
         previewCard = cardPrefab.transform;
         previewCard.SetParent(canvas, false);
         previewCard.position = startPos.position;

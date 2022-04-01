@@ -20,7 +20,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
 
     private void Start()
     {
-        mainCamera = Camera.main; //Camer.main避免放在會一直更新的方法內，因為會一直去Get屬性                                
+        mainCamera = Camera.main; //Camer.main避免放在會一直更新的方法內，因為會一直去Get屬性        
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -29,7 +29,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
         CardsManager.Instance.forbiddenAreaRenderer.enabled = true;
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public async void OnDrag(PointerEventData eventData)
     {
         //將UI座標轉換為世界座標
         RectTransformUtility.ScreenPointToWorldPointInRectangle(transform.parent as RectTransform, eventData.position, null, out Vector3 worldPos);
