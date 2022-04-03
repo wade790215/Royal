@@ -1775,8 +1775,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   aiState: 0
-  projectile: {fileID: 953002537907380271, guid: e12f67aa396803b4db1f156b4de6a91f,
-    type: 3}
+  AssetReference:
+    m_AssetGUID: e12f67aa396803b4db1f156b4de6a91f
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
   firePos: {fileID: 2574879117666418469}
 --- !u!1 &5557141645663679012
 GameObject:
