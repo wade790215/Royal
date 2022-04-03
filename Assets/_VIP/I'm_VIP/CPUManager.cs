@@ -23,7 +23,7 @@ public class CPUManager : MonoBehaviour
             var cardList = MyCardModel.instance.list;
             var carData = cardList[Random.Range(0, cardList.Count)];
             //設定CPU出牌區域
-            var viewList = CardView.CreatePlaceable(carData, new Vector3(Random.Range(cpuPlayCardRange[0].position.x, cpuPlayCardRange[1].position.x), 0, 
+            var viewList =  CardView.CreatePlaceable(carData, new Vector3(Random.Range(cpuPlayCardRange[0].position.x, cpuPlayCardRange[1].position.x), 0, 
                 Random.Range(cpuPlayCardRange[0].position.z, cpuPlayCardRange[1].position.z)), transform, Faction.Opponent);
             foreach (var item in viewList)
             {

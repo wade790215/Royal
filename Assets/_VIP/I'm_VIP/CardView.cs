@@ -2,7 +2,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.EventSystems;
 using UnityRoyale;
 using static UnityRoyale.Placeable;
@@ -27,7 +29,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
         CardsManager.Instance.forbiddenAreaRenderer.enabled = true;
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public async void OnDrag(PointerEventData eventData)
     {
         //將UI座標轉換為世界座標
         RectTransformUtility.ScreenPointToWorldPointInRectangle(transform.parent as RectTransform, eventData.position, null, out Vector3 worldPos);
@@ -43,10 +45,13 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
             // 如果小兵還沒拖到場上
             if (isDragging == false)
             {
+                //防止重複執行CreatePlaceable
+                isDragging = true; 
                 //隱藏卡牌
-                GetComponent<CanvasGroup>().alpha = 0;                
+                GetComponent<CanvasGroup>().alpha = 0;    
+                //Tips 當拖曳時會一直掉用這個方法，暫時先不要用異步等待這個方法，會一直生產小兵
                 CreatePlaceable(data, raycastHit.point,previewHolder.transform,Faction.Player);
-                isDragging = true;
+                
             }
             else
             {
@@ -64,7 +69,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
                 GetComponent<CanvasGroup>().alpha = 1;
                 foreach (Transform unit in previewHolder)
                 {
-                    Destroy(unit.gameObject);
+                   Addressables.ReleaseInstance(unit.gameObject);
                 }
                 
             }
@@ -101,6 +106,8 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
             //unit.transform.localPosition = offset;
             //parent.position = pos;
             var unit = Instantiate(unitPrefabs, parent, false);
+            //string prefabsName = faction == Faction.Player ? MP.associatedPrefab : MP.alternatePrefab;
+            //var unit = await Addressables.InstantiateAsync(prefabsName, parent, false).Task;
             unit.transform.localPosition = offset;
             unit.transform.position = pos + offset;
             MP.faction = faction;
@@ -118,7 +125,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
         if (hitGround)
         {
             OnCardUsed();
-            Destroy(this.gameObject);
+            Addressables.ReleaseInstance(this.gameObject);
 
             //這裡的await沒有new，返回值可以是void
             await CardsManager.Instance.PreveiwAreaToPlayingArea(playAreaIndex,0.5f);

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class ProjectileMgr : MonoBehaviour
 {
@@ -12,14 +13,7 @@ public class ProjectileMgr : MonoBehaviour
     {
         Instance = this;
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
         UpdateProjectiles(MineProjectile);
@@ -36,7 +30,7 @@ public class ProjectileMgr : MonoBehaviour
             var TargetAI = MP.target;
             if (TargetAI == null)
             {
-                Destroy(MP.gameObject);
+                Addressables.ReleaseInstance(MP.gameObject);
                 //利用 destroyProjectilesList 來儲存被摧毀的投擲物，如果直接Remove會導致List的Index往前推進下次搜尋時會跳過
                 destroyProjectilesList.Add(MP);
                 continue;
@@ -57,7 +51,7 @@ public class ProjectileMgr : MonoBehaviour
                     TargetAI.GetComponent<Animator>()?.SetTrigger("IsDead");
                 }
             }
-            Destroy(MP.gameObject);
+            Addressables.ReleaseInstance(MP.gameObject);
             destroyProjectilesList.Add(MP);
         }
         foreach (var item in destroyProjectilesList)
