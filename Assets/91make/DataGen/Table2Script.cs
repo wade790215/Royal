@@ -12,6 +12,7 @@ using UnityEngine;
 
 public class Table2Script : MonoBehaviour
 {
+#if UNITY_EDITOR
 	[MenuItem("Tools/Clear Scripts")]
 	public static void _DelScript()
 	{
@@ -56,6 +57,7 @@ public class Table2Script : MonoBehaviour
 		AssetDatabase.Refresh();
 		print("代码生成完毕");
 	}
+#endif
 
 	static string[][] LoadXls(string filePath)
 	{
