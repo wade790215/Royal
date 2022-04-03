@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Cards
+  m_EditorClassIdentifier: 
+  m_GroupName: Cards
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 45b46a1bcbfb6784bbc1f8b3d3a955c7
+  m_SerializeEntries:
+  - m_GUID: ea0f1aa24f317e747ae0c42ab9bb682f
+    m_Address: Card
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 9d6c8cb49ee71e94a8360a6ec10adc9f
+    m_Address: ArcherCard
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b42cc6a59d80d834896c090d0bb10f62
+    m_Address: MageCard
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ab8fdcf70b652094d899b270499b7dcc
+    m_Address: WarriorCard
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 62fd5e501abef4d188f123698eca5c92, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: f9953f90b59be314ca046ed29fb465ef, type: 2}
+    - {fileID: 11400000, guid: b0520b49a563af74a90ecf2e1f01a667, type: 2}

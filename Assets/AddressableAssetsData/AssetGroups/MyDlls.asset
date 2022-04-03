@@ -10,16 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Chars
+  m_Name: MyDlls
   m_EditorClassIdentifier: 
-  m_GroupName: Chars
+  m_GroupName: MyDlls
   m_Data:
     m_SerializedData: []
-  m_GUID: 2da3272b2590a84468a638d9cb90264b
-  m_SerializeEntries: []
+  m_GUID: 5d4bc54f456fee343a69c0d577415a18
+  m_SerializeEntries:
+  - m_GUID: d906ac87942c82044ab8c1cc874c4aa2
+    m_Address: HelloDll.pdb
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: a1fd44e5d85aed440a206d7226922829
+    m_Address: HelloDll.dll
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 62fd5e501abef4d188f123698eca5c92, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 949f8ba9225c0da4bb958c96f04e7fa8, type: 2}
-    - {fileID: 11400000, guid: ab796028cdf700b4c85f82a4e596d011, type: 2}
+    - {fileID: 11400000, guid: 892676eba8b497c42b4c001b743bc94b, type: 2}
+    - {fileID: 11400000, guid: 9fc9096f3673b0a429f69c98fc78e862, type: 2}
