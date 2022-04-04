@@ -24,5 +24,8 @@ public class MyDllLoader : MonoBehaviour
         var t = ass.GetType("Hello");
         //使用Class內的方法 Inovke(使用者,方法的參數)
         t.GetMethod("SayHello").Invoke(null,null);
+
+        Addressables.Release(pdb);
+        Addressables.Release(dll);
     } 
 }
