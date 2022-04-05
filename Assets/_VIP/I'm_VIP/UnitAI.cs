@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class UnitAI : AIBase
 {
-    public GameObject projectile;
+    //public GameObject projectile;
+    public AssetReference AssetReference;
     public Transform firePos;
     private MyPlaceable targetPlaceable;
     public void OnDealDamage()
@@ -17,10 +20,10 @@ public class UnitAI : AIBase
         }
     }
 
-    public void OnFireProjectile()
+    public async void OnFireProjectile()
     {
         //放在手位置(世界座標)、但是不以firePos為父節點
-        var GO = Instantiate(projectile, firePos.position,Quaternion.identity,ProjectileMgr.Instance.transform);
+        var GO = await Addressables.InstantiateAsync(AssetReference, firePos.position, Quaternion.identity, ProjectileMgr.Instance.transform).Task;
         GO.GetComponent<MyProjectile>().caster = this;
         GO.GetComponent<MyProjectile>().target = target;
         ProjectileMgr.Instance.MineProjectile.Add(GO.GetComponent<MyProjectile>());

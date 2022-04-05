@@ -15,12 +15,8 @@ MonoBehaviour:
   m_GroupName: Cards
   m_Data:
     m_SerializedData: []
-  m_GUID: d3afc5780e6fbe149a64251dbd04c3da
+  m_GUID: 45b46a1bcbfb6784bbc1f8b3d3a955c7
   m_SerializeEntries:
-  - m_GUID: be133562a2bb0f2449defdeab899b274
-    m_Address: Card_Back
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: ea0f1aa24f317e747ae0c42ab9bb682f
     m_Address: Card
     m_ReadOnly: 0
@@ -41,5 +37,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 62fd5e501abef4d188f123698eca5c92, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: ffcef62ee9036364eaaa0fb2815e87d6, type: 2}
-    - {fileID: 11400000, guid: 7cabd984474cf584a98eb1c6b1cfa17a, type: 2}
+    - {fileID: 11400000, guid: f9953f90b59be314ca046ed29fb465ef, type: 2}
+    - {fileID: 11400000, guid: b0520b49a563af74a90ecf2e1f01a667, type: 2}
