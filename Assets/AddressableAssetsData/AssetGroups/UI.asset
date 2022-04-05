@@ -21,6 +21,30 @@ MonoBehaviour:
     m_Address: LogoPage
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 527176e0f504b5d4a9e405fbdde774e9
+    m_Address: DeckPage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e3b5a273a317c984082945df8c1b3416
+    m_Address: LoginPage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e39272f58c7b1be42b693246e09c0704
+    m_Address: GameOverPage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f213e29bdec8b634ca9e6a62d5322286
+    m_Address: MainPage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b5c9672ddf50d754bad021ceb82f991d
+    m_Address: TopFixPage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: fe6282ae547ccb748ade891c8574938c
+    m_Address: BottomFixPage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 62fd5e501abef4d188f123698eca5c92, type: 2}
   m_SchemaSet:
