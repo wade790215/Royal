@@ -50,7 +50,7 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
                 //隱藏卡牌
                 GetComponent<CanvasGroup>().alpha = 0;    
                 //Tips 當拖曳時會一直掉用這個方法，暫時先不要用異步等待這個方法，會一直生產小兵
-                CreatePlaceable(data, raycastHit.point,previewHolder.transform,Faction.Player);
+                await CreatePlaceable(data, raycastHit.point,previewHolder.transform,Faction.Player);
                 
             }
             else
