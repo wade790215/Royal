@@ -186,7 +186,7 @@ public abstract class UIPage : MyComponent
 			}
 			else
 			{
-				go = GameObject.Instantiate(Resources.Load(uiPath)) as GameObject;
+				go = Object.Instantiate(Resources.Load(uiPath)) as GameObject;
 			}
 
 			//protected.
