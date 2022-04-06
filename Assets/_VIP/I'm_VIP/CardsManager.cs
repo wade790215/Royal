@@ -21,17 +21,21 @@ public class CardsManager : MonoBehaviour
         Instance = this;
     }
     async void Start()
-    {        
-        await (CreateOneCardToPreveiwArea(0.5f));
-        await (PreveiwAreaToPlayingArea(0, 0.5f));
+    {
+        UIPage.ShowPageAsync<PlayCardPage>(async() => 
+        {
+            await (CreateOneCardToPreveiwArea(0.5f));
+            await (PreveiwAreaToPlayingArea(0, 0.5f));
 
-        await (CreateOneCardToPreveiwArea(0.5f));
-        await (PreveiwAreaToPlayingArea(1, 0.5f));
+            await (CreateOneCardToPreveiwArea(0.5f));
+            await (PreveiwAreaToPlayingArea(1, 0.5f));
 
-        await (CreateOneCardToPreveiwArea(0.5f));
-        await (PreveiwAreaToPlayingArea(2, 0.5f));
+            await (CreateOneCardToPreveiwArea(0.5f));
+            await (PreveiwAreaToPlayingArea(2, 0.5f));
 
-        await (CreateOneCardToPreveiwArea(0.5f));
+            await (CreateOneCardToPreveiwArea(0.5f));
+        });
+       
     }
     //改用async來降低效能消耗
     public async Task CreateOneCardToPreveiwArea(float delayTime) 

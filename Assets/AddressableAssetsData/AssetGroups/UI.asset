@@ -45,6 +45,10 @@ MonoBehaviour:
     m_Address: BottomFixPage
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: daa8df4833959d94681a7ef117c708d8
+    m_Address: PlayCardPage
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 62fd5e501abef4d188f123698eca5c92, type: 2}
   m_SchemaSet:
