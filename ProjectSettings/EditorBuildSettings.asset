@@ -32,7 +32,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/_Tutorials/08-PlaceableAI.unity
     guid: 1a005616e20ace44a8aaeeca5078a1fd
-  - enabled: 1
+  - enabled: 0
     path: Assets/_VIP/I'm_VIP/Scene/Game.unity
     guid: ae0d7344d7e77e04b9aec4f712d89f71
   m_configObjects:
