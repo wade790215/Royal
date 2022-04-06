@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public partial class BottomFixPage
+public partial class PlayCardPage
 {
-	public BottomFixPage() : base(UIType.Fixed, UIMode.DoNothing, UICollider.None)
+	public PlayCardPage() : base(UIType.Normal, UIMode.DoNothing, UICollider.None)
 	{
-		Debug.LogWarning("TODO: 请修改BottomFixPage页面类型等参数，或注释此行");
+		Debug.LogWarning("TODO: 请修改PlayCardPage页面类型等参数，或注释此行");
 	}
 
 	public void OnStart()
