@@ -58,8 +58,8 @@ public class CardsManager : MonoBehaviour
         GameObject cardPrefab =  await Addressables.InstantiateAsync(card.cardPrefab).Task;        
         previewCard = cardPrefab.transform;
         previewCard.SetParent(canvas, false);
-        previewCard.position = startPos.position;
         previewCard.localScale = Vector3.one ;
+        previewCard.position = startPos.position;
         previewCard.DOMove(endPos.position, 0.1f);
         previewCard.GetComponent<CardView>().data = card;   
         previewCard.GetComponent<CardView>().previewHolder = this.previewHodler;

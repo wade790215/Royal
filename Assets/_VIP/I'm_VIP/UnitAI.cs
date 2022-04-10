@@ -16,6 +16,7 @@ public class UnitAI : AIBase
         if (targetPlaceable.hitPoints < 0)
         { 
             targetPlaceable.hitPoints = 0;
+            PlaceableManager.Instance.OnEnterDie(target);
             target = null;
         }
     }

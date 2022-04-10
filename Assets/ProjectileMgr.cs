@@ -36,7 +36,7 @@ public class ProjectileMgr : MonoBehaviour
                 continue;
             }
             MP.progress += Time.deltaTime * MP.projectileSpeed;
-            MP.transform.position = Vector3.Lerp(MP.caster.transform.position, TargetAI.transform.position + Vector3.up, MP.progress);
+            MP.transform.position = Vector3.Lerp(CasterAI.firePos.position, TargetAI.transform.position + Vector3.up, MP.progress);
 
             if (MP.progress >= 1f)
             {

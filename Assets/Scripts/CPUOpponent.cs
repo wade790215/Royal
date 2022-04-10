@@ -14,6 +14,7 @@ namespace UnityRoyale
         private Coroutine actingCoroutine;
 
 		public float opponentLoopTime = 5f;
+   
 
         public void LoadDeck()
         {

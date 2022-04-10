@@ -6,8 +6,6 @@ public class Main : MonoBehaviour
 {   
     void Start()
     {
-        UIPage.ShowPageAsync<LogoPage>();
-    }
-
-  
+        UIPage.ShowPageAsync<MainPage>();
+    }  
 }

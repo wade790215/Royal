@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.AI;
 using static UnityRoyale.Placeable;
 
@@ -139,11 +140,14 @@ public class PlaceableManager : MonoBehaviour
         }
     }
 
-    public void OnEnterDie(AIBase target)
+    public async void OnEnterDie(AIBase target)
     {
-        if (target.aiState == AIState.Dead) return;
-        if (target is BuildingAI) return;
-        target.GetComponent<NavMeshAgent>().enabled = false;
+        if (target.aiState == AIState.Dead) return;        
+        if (target.GetComponent<NavMeshAgent>() !=null)
+        {
+            target.GetComponent<NavMeshAgent>().enabled = false;
+        }
+        
         target.GetComponent<AIBase>().aiState = AIState.Dead;
         target.GetComponent<PlaceableView>().placeableData.hitPoints = 0;
         target.GetComponent<Animator>()?.SetTrigger("IsDead");
@@ -157,7 +161,17 @@ public class PlaceableManager : MonoBehaviour
             item.material.SetFloat("_EdgeWidth", 0.1f);
             item.material.SetFloat("_DissolveFatcor", view.dieProgress);
         }
-        //Destroy(target.gameObject, view.dieDuration);
+
+        if (target.transform == mineTower.transform || target.transform == opponentTower.transform)
+        {
+            var faction = target.GetComponent<PlaceableView>().placeableData.faction == Faction.Player ? Faction.Opponent:Faction.Player;
+            KBEngine.Event.fireOut("OnGameOver", faction);
+            UIPage.ShowPageAsync<GameOverPage>(faction);
+        }
+
+        await new WaitForSeconds(view.dieDuration);
+        if (target == null) return;       
+        Addressables.ReleaseInstance(target.gameObject);
     }
 
     private bool IsInAttackRange(Vector3 myPos, Vector3 targetPos, float attackRange)

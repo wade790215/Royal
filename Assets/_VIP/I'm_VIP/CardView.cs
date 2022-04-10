@@ -110,6 +110,11 @@ public class CardView : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
             var unit = await Addressables.InstantiateAsync(prefabName, parent, false).Task;
             unit.transform.localPosition = offset;
             unit.transform.position = pos + offset;
+
+            if (faction == Faction.Opponent)
+            {
+                unit.transform.Rotate(0, 180, 0);
+            }
             MP.faction = faction;
             var PV = unit.GetComponent<PlaceableView>();
             PV.placeableData = MP;
