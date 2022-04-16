@@ -12,15 +12,15 @@ using System.IO;
 /// 此脚本负责UI页面的导出，我们先学习如何使用该脚本，暂不涉及其实现
 /// 用法：首先我们需要提供一个代码生成模版
 /// </summary>
-public static class GenUIPageScript
+public class UIPageID : MonoBehaviour
 {
-	public static string SCRIPT_GEN_PATH = "Assets/_VIP/Scripts/UIPages";
-	public static string SCRIPT_TEMPLATE_PATH = "Assets/Plugins/RayUI/Template";
-	//public static string UI_ROOT_PATH = "UI"; // NB: Addressable不需要根路径，把UI资源做一下名称简化保持【资源名==根对象名】即可
+	public UIType UIType = UIType.Normal;
+	public UIMode UIMode = UIMode.DoNothing;
+	public UICollider UICollider = UICollider.None;
 
-	public static string UIPAGE_CLASS_DEF = File.ReadAllText(SCRIPT_TEMPLATE_PATH + "/UIPageTemplate.cs.txt", Encoding.UTF8);
-
-	public static string VIEW_CLASS_DEF = File.ReadAllText(SCRIPT_TEMPLATE_PATH + "/UIViewTemplate.cs.txt", Encoding.UTF8);
+	private string SCRIPT_GEN_PATH = "Assets/_VIP/Scripts/UIPages";
+	private string SCRIPT_TEMPLATE_PATH = "Assets/Plugins/RayUI/Template";
+	//public string UI_ROOT_PATH = "UI"; // NB: Addressable不需要根路径，把UI资源做一下名称简化保持【资源名==根对象名】即可
 
 	public class UIFieldInfo
 	{
@@ -60,7 +60,7 @@ public static class GenUIPageScript
 		}
 	}
 
-	public static void _Gen(Transform tr, string path, List<UIFieldInfo> list)
+	public void _Gen(Transform tr, string path, List<UIFieldInfo> list)
 	{
 		if (tr == null)
 			return;
@@ -91,9 +91,14 @@ public static class GenUIPageScript
 		}
 	}
 
-	[MenuItem("GameObject/RayGame/生成UIPage脚本", priority = 0)]
-	public static void Gen()
+	//[MenuItem("GameObject/RayGame/生成UIPage脚本", priority = 0)]
+	[ContextMenu("生成UIPage腳本")]
+	public void Gen()
 	{
+		 string UIPAGE_CLASS_DEF = File.ReadAllText(SCRIPT_TEMPLATE_PATH + "/UIPageTemplate.cs.txt", Encoding.UTF8);
+
+		 string VIEW_CLASS_DEF = File.ReadAllText(SCRIPT_TEMPLATE_PATH + "/UIViewTemplate.cs.txt", Encoding.UTF8);
+
 		if (Selection.activeTransform.parent.gameObject.name != "Canvas (Environment)")
 		{
 			Debug.LogError("生成UIPage脚本失败，检查以下条件是否满足：1、UI必须是预制体；2、命令执行在预制体根节点上——父节点必须是Canvas (Environment)");

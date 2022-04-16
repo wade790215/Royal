@@ -5,6 +5,11 @@ using TMPro;
 
 public partial class LoginPage : UIPage
 {
+	public LoginPage() : base(UIType.Normal, UIMode.DoNothing, UICollider.None)
+	{
+		
+	}
+
 	public InputField accInput;
 	public InputField pwdInput;
 	public Button loginButton;

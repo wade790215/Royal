@@ -5,6 +5,11 @@ using TMPro;
 
 public partial class TopFixPage : UIPage
 {
+	public TopFixPage() : base(UIType.Normal, UIMode.DoNothing, UICollider.None)
+	{
+		
+	}
+
 	public Slider expSlider;
 	public Text expText;
 	public Text lvText;

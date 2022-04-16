@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 8348385899761987807}
   - component: {fileID: 8159486249018639350}
   - component: {fileID: 2165767628239995021}
+  - component: {fileID: 962846380221889877}
   m_Layer: 5
   m_Name: PlayCardPage
   m_TagString: Untagged
@@ -204,6 +205,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &962846380221889877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8348385899761987806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a33d0c736e6fc40b0eb0af21a30d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIType: 1
+  UIMode: 0
+  UICollider: 0
 --- !u!1 &8348385899925619342
 GameObject:
   m_ObjectHideFlags: 0

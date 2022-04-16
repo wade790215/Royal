@@ -5,6 +5,11 @@ using TMPro;
 
 public partial class GameOverPage : UIPage
 {
+	public GameOverPage() : base(UIType.Normal, UIMode.DoNothing, UICollider.None)
+	{
+		
+	}
+
 	public Button oKButton;
 	public Transform kingRed;
 	public Image winImage;

@@ -5,10 +5,15 @@ using TMPro;
 
 public partial class LogoPage : UIPage
 {
-	public Slider progess; //指定widgetID的物件
+	public LogoPage() : base(UIType.Normal, UIMode.DoNothing, UICollider.None)
+	{
+		
+	}
+
+	public Slider progess;
 
 
-	protected override string uiPath => "LogoPage"; //名稱要與Adressables一樣
+	protected override string uiPath => "LogoPage";
 
 	protected override void OnAwake()
 	{

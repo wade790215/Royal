@@ -3,15 +3,9 @@ using UnityEngine;
 
 public partial class PlayCardPage
 {
-	public PlayCardPage() : base(UIType.Normal, UIMode.DoNothing, UICollider.None)
-	{
-		Debug.LogWarning("TODO: 请修改PlayCardPage页面类型等参数，或注释此行");
-	}
-
 	public void OnStart()
 	{
-		//KBEngine.Event.registerOut("MyEventName", this, "MyEventHandler");
-		
+		//KBEngine.Event.registerOut("MyEventName", this, "MyEventHandler");		
 	}
 
     protected override void OnActive()

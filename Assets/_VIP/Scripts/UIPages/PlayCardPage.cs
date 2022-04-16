@@ -5,6 +5,11 @@ using TMPro;
 
 public partial class PlayCardPage : UIPage
 {
+	public PlayCardPage() : base(UIType.Normal, UIMode.DoNothing, UICollider.None)
+	{
+		
+	}
+
 	public Image playCardsArea;
 	public Transform cardTrans;
 	public Transform startPos;
