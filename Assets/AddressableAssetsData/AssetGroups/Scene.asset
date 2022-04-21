@@ -22,7 +22,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: f35a4e9882e587148bd9019c60e325a9
-    m_Address: Main
+    m_Address: MyMain
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: ae0d7344d7e77e04b9aec4f712d89f71

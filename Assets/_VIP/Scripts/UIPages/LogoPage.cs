@@ -5,7 +5,7 @@ using TMPro;
 
 public partial class LogoPage : UIPage
 {
-	public LogoPage() : base(UIType.Normal, UIMode.DoNothing, UICollider.None)
+	public LogoPage() : base(UIType.Normal, UIMode.HideOther, UICollider.None)
 	{
 		
 	}
@@ -18,7 +18,6 @@ public partial class LogoPage : UIPage
 	protected override void OnAwake()
 	{
 		progess = transform.Find("Progess").GetComponent<Slider>();
-
 		OnStart();
 	}
 }

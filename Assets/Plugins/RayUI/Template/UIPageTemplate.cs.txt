@@ -5,7 +5,7 @@ using TMPro;
 
 public partial class {ROOT_UI_NAME} : UIPage
 {
-	public {ROOT_UI_NAME}() : base(UIType.Normal, UIMode.DoNothing, UICollider.None)
+	public {ROOT_UI_NAME}() : base(UIType.{UI_TYPE}, UIMode.{UI_MODE}, UICollider.{UI_COLLIDER})
 	{
 		
 	}

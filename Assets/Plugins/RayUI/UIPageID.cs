@@ -99,13 +99,13 @@ public class UIPageID : MonoBehaviour
 
 		 string VIEW_CLASS_DEF = File.ReadAllText(SCRIPT_TEMPLATE_PATH + "/UIViewTemplate.cs.txt", Encoding.UTF8);
 
-		if (Selection.activeTransform.parent.gameObject.name != "Canvas (Environment)")
-		{
-			Debug.LogError("生成UIPage脚本失败，检查以下条件是否满足：1、UI必须是预制体；2、命令执行在预制体根节点上——父节点必须是Canvas (Environment)");
-			return;
-		}
+        if (Selection.activeTransform.parent.gameObject.name != "Canvas (Environment)")
+        {
+            Debug.LogError("生成UIPage脚本失败，检查以下条件是否满足：1、UI必须是预制体；2、命令执行在预制体根节点上——父节点必须是Canvas (Environment)");
+            return;
+        }
 
-		var fieldList = new List<UIFieldInfo>();
+        var fieldList = new List<UIFieldInfo>();
 		_Gen(Selection.activeTransform, string.Empty, fieldList);
 
 		StringBuilder sbFieldDef = new StringBuilder();
@@ -114,12 +114,15 @@ public class UIPageID : MonoBehaviour
 		{
 			sbFieldDef.AppendLine($"\tpublic {field.fieldType} {field.fieldName};");
 			sbFieldInit.AppendLine($"\t\t{field.fieldName} = transform.Find(\"{field.fieldPath}\").GetComponent<{field.fieldType}>();");
-		}
+		}		
 		string sPage = UIPAGE_CLASS_DEF
 			.Replace("{ROOT_UI_NAME}", Selection.activeGameObject.name)
 			.Replace("{UI_WIDGET_FIELD_LIST}", sbFieldDef.ToString())
 			.Replace("{FIELD_INITIALIZATION_LIST}", sbFieldInit.ToString())
 			.Replace("{UI_PATH}", /*UI_ROOT_PATH + "/" +*/ Selection.activeGameObject.name)
+			.Replace("{UI_TYPE}", UIType.ToString())
+			.Replace("{UI_MODE}", UIMode.ToString())
+			.Replace("{UI_COLLIDER}", UICollider.ToString())		
 			;
 		string sView = VIEW_CLASS_DEF
 			.Replace("{ROOT_UI_NAME}", Selection.activeGameObject.name);

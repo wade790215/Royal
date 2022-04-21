@@ -5,7 +5,7 @@ using TMPro;
 
 public partial class MainPage : UIPage
 {
-	public MainPage() : base(UIType.Normal, UIMode.DoNothing, UICollider.None)
+	public MainPage() : base(UIType.Normal, UIMode.HideOther, UICollider.None)
 	{
 		
 	}

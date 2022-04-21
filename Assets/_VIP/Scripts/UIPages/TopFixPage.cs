@@ -5,7 +5,7 @@ using TMPro;
 
 public partial class TopFixPage : UIPage
 {
-	public TopFixPage() : base(UIType.Normal, UIMode.DoNothing, UICollider.None)
+	public TopFixPage() : base(UIType.Fixed, UIMode.DoNothing, UICollider.None)
 	{
 		
 	}

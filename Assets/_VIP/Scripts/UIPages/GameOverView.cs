@@ -12,7 +12,7 @@ public partial class GameOverPage
 		oKButton.onClick.AddListener(() =>
 		{
 			CloseAllPages();
-			Addressables.LoadSceneAsync("Main");
+			Addressables.LoadSceneAsync("MyMain");
 		});
     }
 

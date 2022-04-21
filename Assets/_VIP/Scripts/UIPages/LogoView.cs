@@ -10,7 +10,13 @@ public partial class LogoPage
     public void OnStart()
     {
         //KBEngine.Event.registerOut("MyEventName", this, "MyEventHandler");
-        progess.DOValue(1.0f, showSeconds).OnComplete(() => Addressables.LoadSceneAsync("Main"));
+        //progess.value = 0;
+        //progess.DOValue(1.0f, showSeconds).OnComplete(() => ShowPageAsync<MainPage>());
+    }
+
+    protected override void OnActive()
+    {
+        ShowPageAsync<LoginPage>();
     }
 
     //public void MyEventHandler()
